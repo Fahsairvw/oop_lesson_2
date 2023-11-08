@@ -121,6 +121,23 @@ forward = my_table3_for.aggregate(lambda x: sum(x)/len(x), 'passes')
 midfielder = my_table3_mid.aggregate(lambda x: sum(x)/len(x), 'passes')
 print(f'forward = {forward} vs midfielders = {midfielder}')
 
+my_table5 = my_DB.search('titanic')
+my_table5_st = my_table5.filter(lambda x: int(x['class']) == 1)
+my_table5_rd = my_table5.filter(lambda x: int(x['class']) == 3)
+first = my_table5_st.aggregate(lambda x: sum(x)/len(x), 'fare')
+third = my_table5_rd.aggregate(lambda x: sum(x)/len(x), 'fare')
+print(f'first = {first},third = {third} class')
+
+my_table5_m = my_table5.filter(lambda x: x['gender'] == 'M')
+my_table5_m_survive = my_table5_m.filter(lambda x: x['survived'] == 'yes')
+male = len(my_table5_m_survive.table) / len(my_table5_m.table)
+my_table5_f = my_table5.filter(lambda x: x['gender'] == 'F')
+my_table5_f_survive = my_table5_f.filter(lambda x: x['survived'] == 'yes')
+female = len(my_table5_f_survive.table) / len(my_table5_f.table)
+print(f'Female = {female}, Male = {male}')
+
+
+
 # print("Test filter: only filtering out cities in Italy")
 # my_table1_filtered = my_table1.filter(lambda x: x['country'] == 'Italy')
 # print(my_table1_filtered)
