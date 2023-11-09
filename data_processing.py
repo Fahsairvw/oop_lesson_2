@@ -136,6 +136,10 @@ my_table5_f_survive = my_table5_f.filter(lambda x: x['survived'] == 'yes')
 female = len(my_table5_f_survive.table) / len(my_table5_f.table)
 print(f'Female = {female}, Male = {male}')
 
+male_passenger = my_table5_m.filter(lambda x: x['embarked'] == 'Southampton')
+print(f'Total number of male passengers = {len(male_passenger.table)}')
+
+
 
 
 # print("Test filter: only filtering out cities in Italy")
